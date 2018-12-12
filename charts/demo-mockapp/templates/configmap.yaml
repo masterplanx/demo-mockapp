@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    name: {{ .Chart.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/name: {{ template "fullname" . }}
+  namespace: jx-staging
+data:
+  PG_HOST: '{{ .Values.data.pg_host }}'
+  PG_PORT: '{{ .Values.data.pg_port }}'
+  PG_DB: '{{ .Values.data.pg_db }}'
+  PG_USER: '{{ .Values.data.pg_user }}'
+  REDIS_HOST: '{{ .Values.data.redis_host }}'
+  REDIS_HOST2: '{{ .Values.data.redis_host2 }}'
+  REDIS_PORT: '{{ .Values.data.redis_port }}'
+  REDIS_PORT2: '{{ .Values.data.redis_port2 }}'

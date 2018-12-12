@@ -23,3 +23,14 @@ resources:
     memory: 128Mi
 ingress:
   enabled: false
+data:
+  pg_host: demodb-postgresql.jx.svc.cluster.local
+  pg_port: 5432
+  pg_db: my-database
+  pg_user: username
+  redis_host: democache-redis-master.jx.svc.cluster.local
+  redis_host2: democache2-redis-master.jx.svc.cluster.local
+  redis_port: 6380
+  redis_port2: 6379
+  pg_pass: c2VjcmV0cGFzc3dvcmQ=
+  rd_pass: aDFMRk5yOVFtaQ==
