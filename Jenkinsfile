@@ -17,10 +17,6 @@ pipeline {
           PREVIEW_NAMESPACE = "$APP_NAME-$BRANCH_NAME".toLowerCase()
           HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
           PATH_APP = "/home/jenkins/workspace/masterplanx_demo-mockapp_master/"
-          PG_USER=username
-	  PG_PASS=c2VjcmV0cGFzc3dvcmQ=
-          PG_HOST=demodb-postgresql.jx.svc.cluster.local
-          PG_DB=my-database
         }
         steps {
           container('python') {
