@@ -16,10 +16,11 @@ pipeline {
           PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
           PREVIEW_NAMESPACE = "$APP_NAME-$BRANCH_NAME".toLowerCase()
           HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
+          PYTHONPATH="/home/jenkins/workspace/masterplanx_demo-mockapp_master/"
         }
         steps {
           container('python') {
-            sh "export PYTHONPATH=${PYTHONPATH}:/home/jenkins/workspace/masterplanx_demo-mockapp_master/"
+            sh 'export PYTHONPATH=${PYTHONPATH}'
             sh "python -m unittest"
             sh "pip install pytest coverage"
             sh "pip install pytest-runner flask"
@@ -59,7 +60,7 @@ pipeline {
             }
           }
           container('python') {
-            sh "export PYTHONPATH=${PYTHONPATH}:/home/jenkins/workspace/masterplanx_demo-mockapp_master/"
+            sh 'export PYTHONPATH=${PYTHONPATH}'
             sh "python -m unittest"
             sh "pip install pytest coverage"
             sh "pip install pytest-runner flask"
