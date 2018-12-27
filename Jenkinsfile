@@ -19,7 +19,7 @@ pipeline {
         }
         steps {
           container('python') {
-            sh "find . -type d -name app"
+            sh "find / -type d -name app"
             sh "python -m unittest"
             sh "pip install pytest coverage"
             sh "pip install pytest-runner flask"
@@ -59,7 +59,7 @@ pipeline {
             }
           }
           container('python') {
-            sh "find . -type d -name app"
+            sh "find / -type d -name app"
             sh "python -m unittest"
             sh "pip install pytest coverage"
             sh "pip install pytest-runner flask"
