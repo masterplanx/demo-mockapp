@@ -19,6 +19,7 @@ pipeline {
         }
         steps {
           container('python') {
+            sh "export PYTHONPATH=${PYTHONPATH}:${WORKSPACE}/demo-mockapp"
             sh "python -m unittest"
             sh "pip install pytest coverage"
             sh "pip install pytest-runner flask"
@@ -58,6 +59,7 @@ pipeline {
             }
           }
           container('python') {
+            sh "export PYTHONPATH=${PYTHONPATH}:${WORKSPACE}/demo-mockapp"
             sh "python -m unittest"
             sh "pip install pytest coverage"
             sh "pip install pytest-runner flask"
