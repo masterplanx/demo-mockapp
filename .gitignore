@@ -1,3 +1,4 @@
 app.db
 flaskr.db
 .eggs/
+app.egg-info/
