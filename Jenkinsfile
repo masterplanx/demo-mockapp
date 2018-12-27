@@ -21,7 +21,7 @@ pipeline {
         steps {
           container('python') {
             sh 'export PYTHONPATH=:$PATH_APP'
-            sh 'export PG_USER=username && export PG_PASS=c2VjcmV0cGFzc3dvcmQ= && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=WFdWRjFnM3pMMA== && export REDIS_PORT2=6379'
+            sh 'export PG_USER="username" && export PG_PASS=c2VjcmV0cGFzc3dvcmQ= && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=WFdWRjFnM3pMMA== && export REDIS_PORT2=6379'
             sh "python -m unittest"
             sh "pip install pytest coverage"
             sh "pip install pytest-runner flask redis"
@@ -62,7 +62,7 @@ pipeline {
           }
           container('python') {
             sh "python -m unittest"
-            sh 'export PG_USER=username && export PG_PASS=c2VjcmV0cGFzc3dvcmQ= && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=WFdWRjFnM3pMMA== && export REDIS_PORT2=6379'
+            sh 'export PG_USER="username" && export PG_PASS=c2VjcmV0cGFzc3dvcmQ= && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=WFdWRjFnM3pMMA== && export REDIS_PORT2=6379'
             sh "pip install pytest coverage pytest-runner"
             sh "pip install flask flask_migrate redis"
             sh "PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest"
