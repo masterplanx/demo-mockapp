@@ -17,5 +17,3 @@ six==1.10.0
 SQLAlchemy==1.1.9
 Werkzeug==0.12.1
 redis
-pytest
-coverage
