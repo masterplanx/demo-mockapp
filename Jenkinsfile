@@ -60,6 +60,7 @@ pipeline {
           container('python') {
             sh "python -m unittest"
             sh "pip install pytest coverage"
+            sh "pip install pytest-runner flask"
             sh "python app/setup.py test"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
