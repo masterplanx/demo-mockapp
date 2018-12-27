@@ -22,7 +22,7 @@ pipeline {
             sh "python -m unittest"
             sh "pip install pytest coverage"
             sh "pip install pytest-runner flask"
-            sh "python setup.py test"
+            sh "pytest"
 
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
@@ -61,7 +61,7 @@ pipeline {
             sh "python -m unittest"
             sh "pip install pytest coverage"
             sh "pip install pytest-runner flask"
-            sh "python setup.py test"
+            sh "pytest"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
