@@ -23,7 +23,7 @@ pipeline {
             sh 'export PYTHONPATH=:$PATH_APP'
             sh "python -m unittest"
             sh "pip install pytest coverage"
-            sh "pip install pytest-runner flask"
+            sh "pip install pytest-runner flask redis"
             sh "PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest"
 
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
@@ -62,7 +62,7 @@ pipeline {
           container('python') {
             sh "python -m unittest"
             sh "pip install pytest coverage"
-            sh "pip install pytest-runner flask"
+            sh "pip install pytest-runner flask redis"
             sh "PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
