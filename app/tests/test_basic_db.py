@@ -9,8 +9,14 @@ import unittest
 import requests
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
+import time
+import logging
+
+
+
 Base = declarative_base()
  
+logging.basicConfig(level=logging.DEBUG)
 
 database_uri = 'postgresql+psycopg2://{dbuser}:{dbpass}@{dbhost}/{dbname}'.format(
     dbuser=os.environ['PG_USER'],
@@ -47,7 +53,8 @@ class BasicTests(unittest.TestCase):
         connection = engine.connect()
         transaction = connection.begin()
 
-        print transaction
+        print 'transaction'
+        log = logging.getLogger('setUp')
 #       Base.metadata.create_all(connection)
 
 #        app.config['TESTING'] = True
