@@ -20,8 +20,8 @@ pipeline {
         steps {
           container('python') {
             sh "python -m unittest"
-            sh "pip install pytest coverage"
-            sh "pip install pytest-runner flask redis"
+            #sh "pip install pytest coverage"
+            #sh "pip install pytest-runner flask redis"
 
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
@@ -58,8 +58,8 @@ pipeline {
           }
           container('python') {
             sh "python -m unittest"
-            sh "pip install pytest coverage pytest-runner"
-            sh "pip install flask flask_migrate redis"
+            #sh "pip install pytest coverage pytest-runner"
+            #sh "pip install flask flask_migrate redis"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
