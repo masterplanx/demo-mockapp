@@ -39,11 +39,9 @@ class BasicTests(unittest.TestCase):
     ############################
     #### setup and teardown ####
     ############################
- 
     # executed prior to each test
     def setUp(self):
         global transaction, connection, engine
-       
         # Connect to the database and create the schema within a transaction
         engine = create_engine('postgresql+psycopg2://username:secretpassword@demodb-postgresql.jx.svc.cluster.local/my-database')
         connection = engine.connect()
@@ -54,6 +52,7 @@ class BasicTests(unittest.TestCase):
         app.config['DEBUG'] = False
         app.config['SQLALCHEMY_DATABASE_URI'] 
         self.app = app.test_client()
+        print self.app
         db.drop_all()
         db.create_all()
  
@@ -74,7 +73,7 @@ class BasicTests(unittest.TestCase):
         url = 'http://demo-mockapp.jx-staging.flugel.it/'
         resp = requests.get(url)
         assert resp.status_code == 200
-
+        print 'Connection ' + self
   #      response = self.app.get('/', follow_redirects=True)
   #      self.assertEqual(response.status_code, 200)
  
