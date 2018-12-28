@@ -53,7 +53,7 @@ class BasicTests(unittest.TestCase):
         result = connection.execute('select name from guests')
 
         for row in result:
-          print("username:", row['username'])
+          print("name:", row['name'])
         connection.close()
   
 
