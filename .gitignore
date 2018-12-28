@@ -3,3 +3,4 @@ flaskr.db
 .eggs/
 app.egg-info/
 app/tests/__pycache__/
+*.pyc
