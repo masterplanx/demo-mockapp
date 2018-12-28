@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 import os
 import unittest
+import requests
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
@@ -69,9 +70,14 @@ class BasicTests(unittest.TestCase):
 #### tests ####
 ###############
  
-#    def test_main_page(self):
-#        response = self.app.get('/', follow_redirects=True)
-#        self.assertEqual(response.status_code, 200)
+    def test_main_page(self):
+        "GET request to url returns a 200"
+        url = 'http://demo-mockapp.jx-staging.flugel.it/'
+        resp = requests.get(url)
+        assert resp.status_code == 200
+
+  #      response = self.app.get('/', follow_redirects=True)
+  #      self.assertEqual(response.status_code, 200)
  
  
 if __name__ == "__main__":
