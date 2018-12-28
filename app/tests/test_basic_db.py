@@ -46,8 +46,8 @@ class BasicTests(unittest.TestCase):
        
         # Connect to the database and create the schema within a transaction
         engine = create_engine('postgresql+psycopg2://username:secretpassword@demodb-postgresql.jx.svc.cluster.local/my-database')
-#        connection = engine.connect()
-#        transaction = connection.begin()
+        connection = engine.connect()
+        transaction = connection.begin()
 #        Base.metadata.create_all(connection)
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
@@ -58,8 +58,7 @@ class BasicTests(unittest.TestCase):
         db.create_all()
  
         # Disable sending emails during unit testing
-        #mail.init_app(app)
-        #self.assertEqual(app.debug, False)
+        self.assertEqual(app.debug, False)
  
     # executed after each test
     def tearDown(self):
