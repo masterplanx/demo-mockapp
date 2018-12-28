@@ -8,6 +8,8 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 import unittest
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
  
 
 database_uri = 'postgresql+psycopg2://{dbuser}:{dbpass}@{dbhost}/{dbname}'.format(
