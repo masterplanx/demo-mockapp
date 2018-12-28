@@ -73,7 +73,6 @@ class BasicTests(unittest.TestCase):
         url = 'http://demo-mockapp.jx-staging.flugel.it/'
         resp = requests.get(url)
         assert resp.status_code == 200
-        print 'Connection ' + self
   #      response = self.app.get('/', follow_redirects=True)
   #      self.assertEqual(response.status_code, 200)
  
