@@ -53,7 +53,8 @@ class BasicTests(unittest.TestCase):
         connection = engine.connect()
         transaction = connection.begin()
 
-        print 'transaction'
+        print ("transaction")
+        print 'SERGIO'
         log = logging.getLogger('setUp')
 #       Base.metadata.create_all(connection)
 
