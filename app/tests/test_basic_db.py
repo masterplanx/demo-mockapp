@@ -51,9 +51,15 @@ class BasicTests(unittest.TestCase):
         transaction = connection.begin()
       
         result = connection.execute('select name from guests')
+  
+        str_conn = connection.execute("INSERT INTO guests VALUES ('Gabriel', 'gabriel@flugel.it')")
+
+        print(str_conn)
 
         for row in result:
           print("Prueba de busqueda de usuario haciendo un SELECT a la tabla GUESTS:", row['name'])
+
+        
         connection.close()
   
 
