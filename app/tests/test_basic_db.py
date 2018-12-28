@@ -54,8 +54,8 @@ class BasicTests(unittest.TestCase):
         app.config['DEBUG'] = False
         app.config['SQLALCHEMY_DATABASE_URI'] 
         self.app = app.test_client()
-        #db.drop_all()
-        #db.create_all()
+        db.drop_all()
+        db.create_all()
  
         # Disable sending emails during unit testing
         #mail.init_app(app)
