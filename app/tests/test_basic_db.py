@@ -1,5 +1,6 @@
 import sqlalchemy
 from app import app
+from app import Base
 from redis import Redis
 from flask import Flask, render_template, request
 from flask_migrate import Migrate
@@ -46,7 +47,7 @@ class BasicTests(unittest.TestCase):
         engine = create_engine('postgresql+psycopg2://username:c2VjcmV0cGFzc3dvcmQ=@demodb-postgresql.jx.svc.cluster.local/my-database')
         connection = engine.connect()
         transaction = connection.begin()
-        app.metadata.create_all(connection)
+        Base.metadata.create_all(connection)
         #app.config['TESTING'] = True
         #app.config['WTF_CSRF_ENABLED'] = False
         #app.config['DEBUG'] = False
