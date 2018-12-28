@@ -49,11 +49,11 @@ class BasicTests(unittest.TestCase):
 #        connection = engine.connect()
 #        transaction = connection.begin()
 #        Base.metadata.create_all(connection)
-        #app.config['TESTING'] = True
-        #app.config['WTF_CSRF_ENABLED'] = False
-        #app.config['DEBUG'] = False
-        #app.config['SQLALCHEMY_DATABASE_URI'] 
-        #self.app = app.test_client()
+        app.config['TESTING'] = True
+        app.config['WTF_CSRF_ENABLED'] = False
+        app.config['DEBUG'] = False
+        app.config['SQLALCHEMY_DATABASE_URI'] 
+        self.app = app.test_client()
         #db.drop_all()
         #db.create_all()
  
