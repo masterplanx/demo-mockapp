@@ -52,7 +52,7 @@ class BasicTests(unittest.TestCase):
       
         result = connection.execute('select name from guests')
   
-        str_conn = connection.execute("INSERT INTO guests VALUES ('Gabriel', 'gabriel@flugel.it')")
+        str_conn = connection.execute("INSERT INTO guests (name, email) VALUES  ('Gabriel', 'gabriel@flugel.it')")
 
         print(str_conn)
 
