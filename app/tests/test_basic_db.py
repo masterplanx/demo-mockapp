@@ -52,6 +52,13 @@ class BasicTests(unittest.TestCase):
         engine = create_engine('postgresql+psycopg2://username:secretpassword@demodb-postgresql.jx.svc.cluster.local/my-database')
         connection = engine.connect()
         transaction = connection.begin()
+      
+        cur = connection.cursor()
+        print ('Connection Postgresql')
+        cur.execute('SELECT version()')
+        db_version = cur.fetchone()
+        print(db_version)
+        cur.close()
 
         log = logging.getLogger('connection')
 #       Base.metadata.create_all(connection)
