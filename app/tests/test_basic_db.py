@@ -49,10 +49,11 @@ class BasicTests(unittest.TestCase):
         engine = create_engine('postgresql+psycopg2://username:secretpassword@demodb-postgresql.jx.svc.cluster.local/my-database')
         connection = engine.connect()
         transaction = connection.begin()
+
+        str_conn = connection.execute("INSERT INTO guests (name, email) VALUES  ('Colin', 'colin@flugel.it')")
       
         result = connection.execute('select name from guests')
   
-        str_conn = connection.execute("INSERT INTO guests (name, email) VALUES  ('Gabriel', 'gabriel@flugel.it')")
 
         print(str_conn)
 
