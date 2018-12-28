@@ -46,7 +46,7 @@ class BasicTests(unittest.TestCase):
         
         # Connect to the database and create the schema within a transaction
         engine = create_engine('postgresql+psycopg2://username:c2VjcmV0cGFzc3dvcmQ=@demodb-postgresql.jx.svc.cluster.local/my-database')
-        connection = engine.connect()
+#        connection = engine.connect()
 #        transaction = connection.begin()
 #        Base.metadata.create_all(connection)
         #app.config['TESTING'] = True
