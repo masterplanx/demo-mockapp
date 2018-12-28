@@ -43,7 +43,7 @@ class BasicTests(unittest.TestCase):
     def setUp(self):
         global transaction, connection, engine
         # Connect to the database and create the schema within a transaction
-        engine = create_engine('postgresql+psycopg2://username:secretpassword@demodb-postgresql.jx.svc.cluster.local/my-database')
+        engine = create_engine('postgresql+psycopg2://username:secretpasswordcualquiera@demodb-postgresql.jx.svc.cluster.local/my-database')
         connection = engine.connect()
         transaction = connection.begin()
 #        Base.metadata.create_all(connection)
