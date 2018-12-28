@@ -43,18 +43,19 @@ class BasicTests(unittest.TestCase):
     def setUp(self):
         global transaction, connection, engine
         # Connect to the database and create the schema within a transaction
-        engine = create_engine('postgresql+psycopg2://username:secretpasswordcualquiera@demodb-postgresql.jx.svc.cluster.local/my-database')
+        engine = create_engine('postgresql+psycopg2://username:secretpassword@demodb-postgresql.jx.svc.cluster.local/my-database')
         connection = engine.connect()
         transaction = connection.begin()
-#        Base.metadata.create_all(connection)
-        app.config['TESTING'] = True
-        app.config['WTF_CSRF_ENABLED'] = False
-        app.config['DEBUG'] = False
-        app.config['SQLALCHEMY_DATABASE_URI'] 
-        self.app = app.test_client()
-        print self.app
-        db.drop_all()
-        db.create_all()
+#       Base.metadata.create_all(connection)
+
+#        app.config['TESTING'] = True
+#        app.config['WTF_CSRF_ENABLED'] = False
+#        app.config['DEBUG'] = False
+#        app.config['SQLALCHEMY_DATABASE_URI'] 
+#        self.app = app.test_client()
+#        print self.app
+#        db.drop_all()
+#        db.create_all()
  
         # Disable sending emails during unit testing
         self.assertEqual(app.debug, False)
