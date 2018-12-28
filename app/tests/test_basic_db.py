@@ -43,7 +43,7 @@ class BasicTests(unittest.TestCase):
 
         
         # Connect to the database and create the schema within a transaction
-        engine = create_engine('postgresql:///yourdb')
+        engine = create_engine(database_uri)
         connection = engine.connect()
         transaction = connection.begin()
         app.metadata.create_all(connection)
