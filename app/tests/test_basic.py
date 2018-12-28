@@ -1,29 +1,67 @@
 from app import app
-import unittest 
+from redis import Redis
+from flask import Flask, render_template, request
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+import os
+import unittest
+ 
 
-class FlaskBookshelfTests(unittest.TestCase): 
+database_uri = 'postgresql+psycopg2://{dbuser}:{dbpass}@{dbhost}/{dbname}'.format(
+    dbuser=os.environ['PG_USER'],
+    dbpass=os.environ['PG_PASS'],
+    dbhost=os.environ['PG_HOST'],
+    dbname=os.environ['PG_DB']
+)
 
-    @classmethod
-    def setUpClass(cls):
-        pass 
+app = Flask(__name__)
+app.config.update(
+    SQLALCHEMY_DATABASE_URI=database_uri,
+    SQLALCHEMY_TRACK_MODIFICATIONS=False,
+)
 
-    @classmethod
-    def tearDownClass(cls):
-        pass 
 
+# initialize the database connection
+db = SQLAlchemy(app)
+
+# initialize database migration management
+migrate = Migrate(app, db)
+ 
+ 
+ 
+class BasicTests(unittest.TestCase):
+ 
+    ############################
+    #### setup and teardown ####
+    ############################
+ 
+    # executed prior to each test
     def setUp(self):
-        # creates a test client
+        app.config['TESTING'] = True
+        app.config['WTF_CSRF_ENABLED'] = False
+        app.config['DEBUG'] = False
+        app.config['SQLALCHEMY_DATABASE_URI'] 
         self.app = app.test_client()
-        # propagate the exceptions to the test client
-        self.app.testing = True 
-
+        db.drop_all()
+        db.create_all()
+ 
+        # Disable sending emails during unit testing
+        mail.init_app(app)
+        self.assertEqual(app.debug, False)
+ 
+    # executed after each test
     def tearDown(self):
-        pass 
-
-    def test_home_status_code(self):
-        # sends HTTP GET request to the application
-        # on the specified path
-        result = self.app.get('/cache') 
-
-        # assert the status code of the response
-        self.assertEqual(result.status_code, 200) 
+        pass
+ 
+ 
+###############
+#### tests ####
+###############
+ 
+    def test_main_page(self):
+        response = self.app.get('/', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+ 
+ 
+if __name__ == "__main__":
+    unittest.main()
