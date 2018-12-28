@@ -50,9 +50,12 @@ class BasicTests(unittest.TestCase):
         connection = engine.connect()
         transaction = connection.begin()
       
-        string_conn = connection.execute('SELECT VERSION()')
+        result = connection.execute('select name from guests')
+
+        for row in result:
+          print("username:", row['username'])
+        connection.close()
   
-        print ('Conectandome a: %s' + string_conn)
 
     
 
