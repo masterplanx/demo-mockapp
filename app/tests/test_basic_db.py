@@ -9,8 +9,6 @@ import unittest
 import requests
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-import time
-import logging
 
 
 
@@ -40,7 +38,6 @@ migrate = Migrate(app, db)
  
  
 class BasicTests(unittest.TestCase):
-    logging.basicConfig(level=logging.DEBUG)
  
     ############################
     #### setup and teardown ####
@@ -53,9 +50,8 @@ class BasicTests(unittest.TestCase):
         connection = engine.connect()
         transaction = connection.begin()
       
-        connection.execute("SELECT VERSION()")
+        connection.execute('SELECT VERSION()')
 
-        log = logging.getLogger('connection')
 #       Base.metadata.create_all(connection)
 
 #        app.config['TESTING'] = True
@@ -84,7 +80,6 @@ class BasicTests(unittest.TestCase):
         url = 'http://demo-mockapp.jx-staging.flugel.it/'
         resp = requests.get(url)
         assert resp.status_code == 200
-        #log = logging.getLogger(resp)
   #      response = self.app.get('/', follow_redirects=True)
   #      self.assertEqual(response.status_code, 200)
  
