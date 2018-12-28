@@ -3,5 +3,5 @@ engine = create_engine('postgresql+psycopg2://username:secretpassword@demodb-pos
 with engine.connect() as conn:
   conn.execute("SELECT VERSION()")
   meta = MetaData()
-  referring = Table('referring', meta,
+  referring = Table('name', meta,
   autoload=True, autoload_with=conn)
