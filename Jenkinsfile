@@ -22,7 +22,7 @@ pipeline {
             sh "python -m unittest"
             sh "pip install pytest coverage psycopg2 psycopg2-binary"
             sh "pip install pytest-runner flask redis requests"
-            sh 'export PG_USER="username" && export PG_PASS=c2VjcmV0cGFzc3dvcmQ= && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=WFdWRjFnM3pMMA== && export REDIS_PORT2=6379 && cd app/ && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest'
+            sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=WFdWRjFnM3pMMA== && export REDIS_PORT2=6379 && cd app/ && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest'
 
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
@@ -61,7 +61,7 @@ pipeline {
             sh "python -m unittest"
             sh "pip install pytest coverage pytest-runner psycopg2-binary"
             sh "pip install flask flask_migrate redis psycopg2 requests"
-            sh 'export PG_USER="username" && export PG_PASS=c2VjcmV0cGFzc3dvcmQ= && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=WFdWRjFnM3pMMA== && export REDIS_PORT2=6379 && cd app/ && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest'
+            sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=WFdWRjFnM3pMMA== && export REDIS_PORT2=6379 && cd app/ && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
