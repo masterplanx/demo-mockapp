@@ -16,7 +16,6 @@ import logging
 
 Base = declarative_base()
  
-#logging.basicConfig(level=logging.DEBUG)
 
 database_uri = 'postgresql+psycopg2://{dbuser}:{dbpass}@{dbhost}/{dbname}'.format(
     dbuser=os.environ['PG_USER'],
@@ -41,6 +40,7 @@ migrate = Migrate(app, db)
  
  
 class BasicTests(unittest.TestCase):
+    logging.basicConfig(level=logging.DEBUG)
  
     ############################
     #### setup and teardown ####
