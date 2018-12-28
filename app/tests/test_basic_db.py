@@ -16,7 +16,7 @@ import logging
 
 Base = declarative_base()
  
-logging.basicConfig(level=logging.DEBUG)
+#logging.basicConfig(level=logging.DEBUG)
 
 database_uri = 'postgresql+psycopg2://{dbuser}:{dbpass}@{dbhost}/{dbname}'.format(
     dbuser=os.environ['PG_USER'],
@@ -53,9 +53,7 @@ class BasicTests(unittest.TestCase):
         connection = engine.connect()
         transaction = connection.begin()
 
-        print ("transaction")
-        print 'SERGIO'
-        log = logging.getLogger('setUp')
+        log = logging.getLogger(connection)
 #       Base.metadata.create_all(connection)
 
 #        app.config['TESTING'] = True
@@ -84,8 +82,7 @@ class BasicTests(unittest.TestCase):
         url = 'http://demo-mockapp.jx-staging.flugel.it/'
         resp = requests.get(url)
         assert resp.status_code == 200
-        log = logging.getLogger('setUp')
-        print 'transaction'
+        #log = logging.getLogger(resp)
   #      response = self.app.get('/', follow_redirects=True)
   #      self.assertEqual(response.status_code, 200)
  
