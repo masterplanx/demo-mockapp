@@ -50,7 +50,11 @@ class BasicTests(unittest.TestCase):
         connection = engine.connect()
         transaction = connection.begin()
       
-        connection.execute('SELECT VERSION()')
+        string_conn = connection.execute('SELECT VERSION()')
+  
+        print ('Conectandome a: %s' + string_conn)
+
+    
 
 #       Base.metadata.create_all(connection)
 
