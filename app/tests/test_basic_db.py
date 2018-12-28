@@ -53,7 +53,7 @@ class BasicTests(unittest.TestCase):
         result = connection.execute('select name from guests')
 
         for row in result:
-          print("name:", row['name'])
+          print("Prueba de busqueda de usuario haciendo un SELECT a la tabla GUESTS:", row['name'])
         connection.close()
   
 
