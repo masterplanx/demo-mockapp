@@ -46,6 +46,8 @@ class BasicTests(unittest.TestCase):
         engine = create_engine('postgresql+psycopg2://username:secretpassword@demodb-postgresql.jx.svc.cluster.local/my-database')
         connection = engine.connect()
         transaction = connection.begin()
+
+        print transaction
 #       Base.metadata.create_all(connection)
 
 #        app.config['TESTING'] = True
