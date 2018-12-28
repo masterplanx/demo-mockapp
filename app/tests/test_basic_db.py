@@ -53,7 +53,7 @@ class BasicTests(unittest.TestCase):
         connection = engine.connect()
         transaction = connection.begin()
 
-        log = logging.getLogger(connection)
+        log = logging.getLogger('connection')
 #       Base.metadata.create_all(connection)
 
 #        app.config['TESTING'] = True
