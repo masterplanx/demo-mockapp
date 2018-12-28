@@ -23,7 +23,7 @@ class FlaskBookshelfTests(unittest.TestCase):
     def test_home_status_code(self):
         # sends HTTP GET request to the application
         # on the specified path
-        result = self.app.get('/') 
+        result = self.app.get('/cache') 
 
         # assert the status code of the response
         self.assertEqual(result.status_code, 200) 
