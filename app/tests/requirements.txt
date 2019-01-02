@@ -19,7 +19,6 @@ Werkzeug==0.12.1
 redis
 pytest
 pytest-runner 
-flask
 requests
 coverage
 psycopg2
