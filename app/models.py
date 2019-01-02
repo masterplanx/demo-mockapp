@@ -1,13 +1,13 @@
 from app import DB 
 
 
-class Guest(db.Model):
+class Guest(DB.Model):
     """Simple database model to track event attendees."""
 
     __tablename__ = 'guests'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    email = db.Column(db.String(120))
+    id = DB.Column(DB.Integer, primary_key=True)
+    name = DB.Column(DB.String(80))
+    email = DB.Column(DB.String(120))
 
     def __init__(self, name=None, email=None):
         """Simple database model to track event attendees."""
