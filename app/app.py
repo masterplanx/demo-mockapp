@@ -69,8 +69,3 @@ def hello():
         )
     redis.incr('hits')
     return 'This Flask demo has been viewed %s time(s).' % redis.get('hits')
-
-
-
-
-
