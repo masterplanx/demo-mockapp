@@ -9,11 +9,11 @@ from flask_migrate import Migrate
 
 
 
-DATABASE_URI = 'postgresql+psycopg2://{DBuser}:{DBpass}@{DBhost}/{DBname}'.format(
-    DBuser=os.environ['PG_USER'],
-    DBpass=os.environ['PG_PASS'],
-    DBhost=os.environ['PG_HOST'],
-    DBname=os.environ['PG_DB']
+DATABASE_URI = 'postgresql+psycopg2://{dbuser}:{dbpass}@{dbhost}/{dbname}'.format(
+    dbuser=os.environ['PG_USER'],
+    dbpass=os.environ['PG_PASS'],
+    dbhost=os.environ['PG_HOST'],
+    dbname=os.environ['PG_DB']
 )
 
 APP = Flask(__name__)

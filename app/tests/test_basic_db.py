@@ -1,5 +1,5 @@
 import sqlalchemy
-from app import app
+from app import APP
 from redis import Redis
 from flask import Flask, render_template, request
 from flask_migrate import Migrate
