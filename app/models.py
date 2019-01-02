@@ -1,4 +1,4 @@
-from app import db 
+from app import DB 
 
 
 class Guest(db.Model):
