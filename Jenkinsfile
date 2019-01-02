@@ -20,6 +20,8 @@ pipeline {
         steps {
           container('python') {
             sh "python -m unittest"
+            sh "pip install --upgrade pip"
+            sh "pip install --upgrade setuptools"
             sh "pip install -r app/tests/requirements.txt"
             sh "pip install pylint"
             sh "echo 'Starting Code Review with pylint'"
@@ -62,6 +64,8 @@ pipeline {
           }
           container('python') {
             sh "python -m unittest"
+            sh "pip install --upgrade pip"
+            sh "pip install --upgrade setuptools"
             sh "pip install pylint"
             sh "pip install -r app/tests/requirements.txt"
             sh "echo 'Starting Code Review with pylint'"
