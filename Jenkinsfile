@@ -21,7 +21,7 @@ pipeline {
           container('python') {
             sh "python -m unittest"
             sh "pip install -r app/tests/requirements.txt"
-            sh "apt-get update && apt-get install -y pylint"
+            sh "pip install pylint"
             sh "echo 'Starting Code Review with pylint'"
             sh "pylint --rcfile=app/tests/pylintrc app/app.py"
             sh "echo 'Starting testing with pytest'"
@@ -62,7 +62,7 @@ pipeline {
           }
           container('python') {
             sh "python -m unittest"
-            sh "apt-get update && apt-get install -y pylint"
+            sh "pip install pylint"
             sh "pip install -r app/tests/requirements.txt"
             sh "echo 'Starting Code Review with pylint'"
             sh "pylint --rcfile=app/tests/pylintrc app/app.py"
