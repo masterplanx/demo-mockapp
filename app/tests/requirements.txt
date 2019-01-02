@@ -21,7 +21,5 @@ pytest
 pytest-runner 
 requests
 coverage
-psycopg2
-psycopg2-binary
 pylint
 pylint-flask
