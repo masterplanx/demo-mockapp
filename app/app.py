@@ -1,61 +1,67 @@
+"""
+high level support for doing this and that.
+"""
 import os
-import sys
-from redis import Redis
 from flask import Flask, render_template, request
-from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from redis import Redis
+from flask_migrate import Migrate
 
 
-database_uri = 'postgresql+psycopg2://{dbuser}:{dbpass}@{dbhost}/{dbname}'.format(
-    dbuser=os.environ['PG_USER'],
-    dbpass=os.environ['PG_PASS'],
-    dbhost=os.environ['PG_HOST'],
-    dbname=os.environ['PG_DB']
+
+DATABASE_URI = 'postgresql+psycopg2://{DBuser}:{DBpass}@{DBhost}/{DBname}'.format(
+    DBuser=os.environ['PG_USER'],
+    DBpass=os.environ['PG_PASS'],
+    DBhost=os.environ['PG_HOST'],
+    DBname=os.environ['PG_DB']
 )
 
-app = Flask(__name__)
-app.config.update(
-    SQLALCHEMY_DATABASE_URI=database_uri,
+APP = Flask(__name__)
+APP.config.update(
+    SQLALCHEMY_DATABASE_URI=DATABASE_URI,
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
 )
 
 # initialize the database connection
-db = SQLAlchemy(app)
+DB = SQLAlchemy(APP)
 
 # initialize database migration management
-migrate = Migrate(app, db)
+MIGRATE = Migrate(APP, DB)
 
-
-@app.route('/')
+@APP.route('/')
 def view_registered_guests():
+    """Return the pathname of the KOS root directory."""
     from models import Guest
     guests = Guest.query.all()
     return render_template('guest_list.html', guests=guests)
 
 
-@app.route('/register', methods=['GET'])
+@APP.route('/register', methods=['GET'])
 def view_registration_form():
+    """Return the pathname of the KOS root directory."""
     return render_template('guest_registration.html')
 
 
-@app.route('/register', methods=['POST'])
+@APP.route('/register', methods=['POST'])
 def register_guest():
+    """Return the pathname of the KOS root directory."""
     from models import Guest
     name = request.form.get('name')
     email = request.form.get('email')
 
     guest = Guest(name, email)
-    db.session.add(guest)
-    db.session.commit()
+    DB.session.add(guest)
+    DB.session.commit()
 
     return render_template(
         'guest_confirmation.html', name=name, email=email)
 
 
-redis = Redis(host=os.environ['REDIS_HOST'], port=os.environ['REDIS_PORT2'], db=0, password=os.environ['RD_PASS'])
 
-@app.route('/cache')
+@APP.route('/cache')
 def hello():
+    """Return the pathname of the KOS root directory."""
+    redis = Redis(host=os.environ['REDIS_HOST'], port=os.environ['REDIS_PORT2'], db=0, password=os.environ['RD_PASS'])
     redis.incr('hits')
     return 'This Flask demo has been viewed %s time(s).' % redis.get('hits')
 

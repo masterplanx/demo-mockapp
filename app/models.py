@@ -1,4 +1,4 @@
-from app import db
+from app import db 
 
 
 class Guest(db.Model):
@@ -10,5 +10,6 @@ class Guest(db.Model):
     email = db.Column(db.String(120))
 
     def __init__(self, name=None, email=None):
+        """Simple database model to track event attendees."""
         self.name = name
         self.email = email
