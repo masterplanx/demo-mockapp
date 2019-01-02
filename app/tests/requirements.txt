@@ -22,4 +22,3 @@ pytest-runner
 requests
 coverage
 pylint
-pylint-flask
