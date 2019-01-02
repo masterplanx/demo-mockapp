@@ -61,7 +61,12 @@ def register_guest():
 @APP.route('/cache')
 def hello():
     """Return the pathname of the KOS root directory."""
-    redis = Redis(host=os.environ['REDIS_HOST'], port=os.environ['REDIS_PORT2'], db=0, password=os.environ['RD_PASS'])
+    redis = Redis(
+        host=os.environ['REDIS_HOST'],
+        port=os.environ['REDIS_PORT2'],
+        db=0,
+        password=os.environ['RD_PASS']
+        )
     redis.incr('hits')
     return 'This Flask demo has been viewed %s time(s).' % redis.get('hits')
 
