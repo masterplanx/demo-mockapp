@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image '258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp }
+        docker { image '258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp' }
     }
     environment {
       ORG               = 'masterplanx'
