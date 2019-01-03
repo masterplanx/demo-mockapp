@@ -36,7 +36,7 @@ pipeline {
           }
 
           dir ('./charts/preview') {
-           container('python') {
+           container('$DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION') {
              sh "make preview"
              sh "jx preview --app $APP_NAME --dir ../.."
            }
@@ -48,7 +48,7 @@ pipeline {
           branch 'master'
         }
         steps {
-          container('python') {
+          container('$DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION') {
             // ensure we're not on a detached head
             sh "git checkout master"
             sh "git config --global credential.helper store"
@@ -58,7 +58,7 @@ pipeline {
             sh "echo \$(jx-release-version) > VERSION"
           }
           dir ('./charts/demo-mockapp') {
-            container('python') {
+            container('$DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION') {
               sh "make tag"
             }
           }
@@ -85,7 +85,7 @@ pipeline {
         }
         steps {
           dir ('./charts/demo-mockapp') {
-            container('python') {
+            container('$DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION') {
               sh 'jx step changelog --version v\$(cat ../../VERSION)'
 
               // release the helm chart
