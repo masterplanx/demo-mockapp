@@ -30,7 +30,6 @@ MIGRATE = Migrate(APP, DB)
 
 @APP.route('/')
 def view_registered_guests():
-    """Return the pathname of the KOS root directory."""
     from models import Guest
     guests = Guest.query.all()
     return render_template('guest_list.html', guests=guests)
