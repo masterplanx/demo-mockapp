@@ -68,7 +68,6 @@ pipeline {
             sh "pip install --upgrade setuptools"
             sh "pip install pylint"
             sh "pip install -r app/tests/requirements.txt"
-            sh "FLASK_APP=app/app.py flask db upgrade"
             sh "echo 'Starting Code Review with pylint'"
             sh "pylint --rcfile=app/tests/pylintrc app/app.py"
             sh "echo 'Starting testing with pytest'"
