@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label "jenkins-python"
+        docker { image '258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp }
     }
     environment {
       ORG               = 'masterplanx'
@@ -18,7 +18,7 @@ pipeline {
           HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
         }
         steps {
-          container('258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp') {
+          container('python') {
             sh "python -m unittest"
             //sh "pip install --upgrade pip"
             //sh "pip install --upgrade setuptools"
@@ -36,7 +36,7 @@ pipeline {
           }
 
           dir ('./charts/preview') {
-           container('258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp') {
+           container('python') {
              sh "make preview"
              sh "jx preview --app $APP_NAME --dir ../.."
            }
@@ -48,7 +48,7 @@ pipeline {
           branch 'master'
         }
         steps {
-          container('258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp') {
+          container('python') {
             // ensure we're not on a detached head
             sh "git checkout master"
             sh "git config --global credential.helper store"
@@ -58,11 +58,11 @@ pipeline {
             sh "echo \$(jx-release-version) > VERSION"
           }
           dir ('./charts/demo-mockapp') {
-            container('258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp') {
+            container('python') {
               sh "make tag"
             }
           }
-          container('258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp') {
+          container('python') {
             sh "python -m unittest"
             //sh "pip install --upgrade pip"
             //sh "pip install --upgrade setuptools"
@@ -85,7 +85,7 @@ pipeline {
         }
         steps {
           dir ('./charts/demo-mockapp') {
-            container('258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp') {
+            container('python') {
               sh 'jx step changelog --version v\$(cat ../../VERSION)'
 
               // release the helm chart
