@@ -23,12 +23,11 @@ pipeline {
             sh "pip install --upgrade pip"
             sh "pip install --upgrade setuptools"
             sh "pip install -r app/tests/requirements.txt"
-            sh "FLASK_APP=app/app.py flask db upgrade"
             sh "pip install pylint"
             sh "echo 'Starting Code Review with pylint'"
             sh "pylint --rcfile=app/tests/pylintrc app/app.py"
             sh "echo 'Starting testing with pytest'"
-            sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=a1l2b1VyaVVJYw== && export REDIS_PORT2=6379 && cd app/ && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest -s -q'
+            sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=a1l2b1VyaVVJYw== && export REDIS_PORT2=6379 && cd app/ && FLASK_APP=app.py flask db upgrade  && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest -s -q'
 
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
@@ -73,7 +72,7 @@ pipeline {
             sh "echo 'Starting Code Review with pylint'"
             sh "pylint --rcfile=app/tests/pylintrc app/app.py"
             sh "echo 'Starting testing with pytest'"
-            sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=a1l2b1VyaVVJYw== && export REDIS_PORT2=6379 && cd app/ && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest -s -q'
+            sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=a1l2b1VyaVVJYw== && export REDIS_PORT2=6379 && cd app/ && FLASK_APP=app.py flask db upgrade && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest -s -q'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
