@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image '258279436410.dkr.ecr.us-east-1.amazonaws.com/masterplanx/demo-mockapp' }
+        label "jenkins-python"
     }
     environment {
       ORG               = 'masterplanx'
@@ -20,12 +20,12 @@ pipeline {
         steps {
           container('python') {
             sh "python -m unittest"
-            //sh "pip install --upgrade pip"
-            //sh "pip install --upgrade setuptools"
-            //sh "pip install -r app/tests/requirements.txt"
-            //sh "pip install pylint"
-            //sh "echo 'Starting Code Review with pylint'"
-            //sh "pylint --rcfile=app/tests/pylintrc app/app.py"
+            sh "pip install --upgrade pip"
+            sh "pip install --upgrade setuptools"
+            sh "pip install -r app/tests/requirements.txt"
+            sh "pip install pylint"
+            sh "echo 'Starting Code Review with pylint'"
+            sh "pylint --rcfile=app/tests/pylintrc app/app.py"
             //sh "echo 'Starting testing with pytest'"
             //sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=a1l2b1VyaVVJYw== && export REDIS_PORT2=6379 && cd app/ && FLASK_APP=app.py flask db upgrade  && FLASK_APP=app.py flask run -h 0.0.0.0 -p 5000 && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest -s -q'
 
@@ -64,12 +64,12 @@ pipeline {
           }
           container('python') {
             sh "python -m unittest"
-            //sh "pip install --upgrade pip"
-            //sh "pip install --upgrade setuptools"
-            //sh "pip install pylint"
-            //sh "pip install -r app/tests/requirements.txt"
-            //sh "echo 'Starting Code Review with pylint'"
-            //sh "pylint --rcfile=app/tests/pylintrc app/app.py"
+            sh "pip install --upgrade pip"
+            sh "pip install --upgrade setuptools"
+            sh "pip install pylint"
+            sh "pip install -r app/tests/requirements.txt"
+            sh "echo 'Starting Code Review with pylint'"
+            sh "pylint --rcfile=app/tests/pylintrc app/app.py"
             //sh "echo 'Starting testing with pytest'"
             //sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-postgresql.jx.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.jx.svc.cluster.local && export RD_PASS=a1l2b1VyaVVJYw== && export REDIS_PORT2=6379 && cd app/ && FLASK_APP=app.py flask db upgrade && FLASK_APP=app.py flask run -h 0.0.0.0 -p 5000 && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest -s -q'
 
