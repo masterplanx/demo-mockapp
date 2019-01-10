@@ -23,5 +23,58 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
+        env:
+        - name: POD_VAR
+          value: "mypodvar"
+        - name: PG_PASS
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Chart.Name }}
+              key: PG_PASS
+        - name: RD_PASS
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Chart.Name }}
+              key: RD_PASS
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Chart.Name }}
+              key: REDIS_HOST
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Chart.Name }}
+              key: REDIS_PORT
+        - name: REDIS_PORT2
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Chart.Name }}
+              key: REDIS_PORT2
+        - name: REDIS_HOST2
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Chart.Name }}
+              key: REDIS_HOST2
+        - name: PG_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Chart.Name }}
+              key: PG_HOST
+        - name: PG_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Chart.Name }}
+              key: PG_PORT
+        - name: PG_USER
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Chart.Name }}
+              key: PG_USER
+        - name: PG_DB
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Chart.Name }}
+              key: PG_DB
         resources:
 {{ toYaml .Values.resources | indent 12 }}
