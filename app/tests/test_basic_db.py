@@ -51,10 +51,10 @@ class BasicTests(unittest.TestCase):
         transaction = connection.begin()
 
         str_conn = connection.execute("INSERT INTO guests (name, email) VALUES  ('Colin', 'colin@flugel.it')")
-      
+        transaction.commit()
+        
         result = connection.execute('select name from guests')
   
-        
         print(str_conn)
 
         for row in result:
