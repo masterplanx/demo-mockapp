@@ -4,7 +4,7 @@ high level support for doing this and that.
 import os
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-#from redis import Redis
+from redis import Redis
 from flask_migrate import Migrate
 
 
