@@ -64,14 +64,14 @@ pipeline {
           }
           container('python') {
             sh "python -m unittest"
-            sh "pip install --upgrade pip"
-            sh "pip install --upgrade setuptools"
-            sh "pip install -r app/tests/requirements.txt"
-            sh "pip install pylint"
-            sh "echo 'Starting Code Review with pylint'"
-            sh "pylint --rcfile=app/tests/pylintrc app/app.py"
-            sh "echo 'Starting testing with pytest'"
-            sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-testing-postgresql.testing.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.testing.svc.cluster.local && export RD_PASS=a1l2b1VyaVVJYw== && export REDIS_PORT2=6379 && cd app/ && FLASK_APP=app.py flask db upgrade && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest -s -q'
+           // sh "pip install --upgrade pip"
+           // sh "pip install --upgrade setuptools"
+            //sh "pip install -r app/tests/requirements.txt"
+           // sh "pip install pylint"
+            //sh "echo 'Starting Code Review with pylint'"
+            //sh "pylint --rcfile=app/tests/pylintrc app/app.py"
+            //sh "echo 'Starting testing with pytest'"
+            //sh 'export PG_USER="username" && export PG_PASS=secretpassword && export PG_HOST=demodb-testing-postgresql.testing.svc.cluster.local && export PG_DB=my-database && export REDIS_HOST=democache-redis-master.testing.svc.cluster.local && export RD_PASS=a1l2b1VyaVVJYw== && export REDIS_PORT2=6379 && cd app/ && FLASK_APP=app.py flask db upgrade && PYTHONPATH=:/home/jenkins/workspace/masterplanx_demo-mockapp_master pytest -s -q'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
