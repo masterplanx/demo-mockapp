@@ -1,25 +1,24 @@
-apiVersion: skaffold/v1alpha2
+apiVersion: skaffold/v1beta2
 kind: Config
 build:
+  artifacts:
+  - image: changeme
+    context: .
+    docker: {}
   tagPolicy:
     envTemplate:
-      template: "{{.DOCKER_REGISTRY}}/masterplanx/demo-mockapp:{{.VERSION}}"
-  artifacts:
-  - imageName: changeme
-    workspace: .
-    docker: {}
+      template: '{{.DOCKER_REGISTRY}}/masterplanx/demo-mockapp:{{.VERSION}}'
   local: {}
 deploy:
-  kubectl:
-    manifests:
+  kubectl: {}
 profiles:
 - name: dev
   build:
-    tagPolicy:
-      envTemplate:
-        template: "{{.DOCKER_REGISTRY}}/masterplanx/demo-mockapp:{{.DIGEST_HEX}}"
     artifacts:
     - docker: {}
+    tagPolicy:
+      envTemplate:
+        template: '{{.DOCKER_REGISTRY}}/masterplanx/demo-mockapp:{{.DIGEST_HEX}}'
     local: {}
   deploy:
     helm:
@@ -27,5 +26,5 @@ profiles:
       - name: demo-mockapp
         chartPath: charts/demo-mockapp
         setValueTemplates:
-          image.repository: "{{.DOCKER_REGISTRY}}/masterplanx/demo-mockapp"
-          image.tag: "{{.DIGEST_HEX}}"
+          image.repository: '{{.DOCKER_REGISTRY}}/masterplanx/demo-mockapp'
+          image.tag: '{{.DIGEST_HEX}}'
